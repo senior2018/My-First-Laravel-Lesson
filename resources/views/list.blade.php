@@ -1,7 +1,6 @@
-@extends('layouts')
+@extends('layout')
 
 @section('content')
-    <
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -11,7 +10,7 @@
     <h1>Users</h1>
 
     <div class="pb-3">
-        <a href="{{router('create')}}" class="btn btn-success">Add User</a>
+        <a href="{{route('create')}}" class="btn btn-success">Add User</a>
     </div>
 
     <table class="table table-striped">
