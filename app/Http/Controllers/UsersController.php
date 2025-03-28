@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User; 
+use App\Models\User;
 
-class UsersControler extends Controller
+class UsersController extends Controller
 {
     public function index()
     {
@@ -25,14 +25,14 @@ class UsersControler extends Controller
             'age' => 'required|integer|min:0',
         ]);
 
-        user::create($validationData);
+        User::create($validationData);
 
         return redirect('/')->with('success', 'User created successfully.');
     }
 
     public function edit(int $id)
     {
-        $user = User::findOrFail($id);
+        $user = user::findOrFail($id);
         return view('form', ['user' => $user, 'action' => 'update', 'actionUrl' => 'update/' . $id]);
     }
 
@@ -43,7 +43,7 @@ class UsersControler extends Controller
             'age' => 'required|integer|min:0',
         ]);
 
-        $user = User::findOrFail($id);
+        $user = user::findOrFail($id);
         $user->update($validationData);
 
         $user->name = $request->input('name');
@@ -55,7 +55,7 @@ class UsersControler extends Controller
 
     public function delete(int $id)
     {
-        $user = User::findOrFail($id);
+        $user = user::findOrFail($id);
         $user->delete();
 
         return redirect('/')->with('success', 'User deleted successfully.');
